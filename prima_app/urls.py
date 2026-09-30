@@ -8,4 +8,5 @@ urlpatterns=[
     path('lista/', views.lista, name='lista'),
     path('chi_siamo/', views.chi_siamo, name='chi_siamo'),
     path('variabili/', views.variabili, name='variabili'),
+    path('', views.index, name='index'),
 ]
