@@ -56,7 +56,20 @@
                     <li><a class="dropdown-item" href="{% url 'prima_app:variabili'%}">variabili</a></li>
                 </ul>
                 </li>
-
+                
+                <!-- Dropdown Terza app -->
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Terza app
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                    <li><a class="dropdown-item" href="{% url 'index_root' %}">index root</a></li>
+                    <li><a class="dropdown-item" href="{% url 'terza_app:index'%}">index</a></li>
+                    <li><a class="dropdown-item" href="{% url 'terza_app:prodotto'%}">prodotto</a></li>
+                    <li><a class="dropdown-item" href="{% url 'terza_app:conteggio'%}">conteggio</a></li>
+                    <li><a class="dropdown-item" href="{% url 'terza_app:temperature'%}">temperature</a></li>
+                </ul>
+                </li>
             </ul>
             </div>
         </div>

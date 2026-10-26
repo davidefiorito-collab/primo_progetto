@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{%block title%}
+    {{block.super}} | Temperature
+{%endblock title%}
+{%block content%}
+    <b>dic = {{ dic }}</b> <br/>
+
+    {% for key,value in dic %}
+    <table>
+        <tr>
+           <td> {{key}} </td> 
+           {% if value >= 20 %}
+           <td style="color: red;"> {{value}} </td>
+           {% endif %}
+           {% if value < 20 %}
+           <td style="color: blue;"> {{value}} </td>
+           {% endif %}
+        </tr>
+    </table>
+    {% endfor %}
+    
+{%endblock content%}

@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{%block title%}
+    {{block.super}} | Prodotti Casuali
+{%endblock title%}
+{%block content%}
+    <b>varP = {{ var1 * var2 }}</b> <br/>
+    <p>var1 = {{var1}}</p>
+    <p>var2 = {{var2}}</p>
+    {% if varP > 20 %}
+        <p style="color: green;"><i>{{varP}}</i></p>
+    {% endif %}
+    {% if varP < 20 %}
+        <p style="color: red;"><i>{{varP}}</i></p>
+    {% endif %}
+    {% if varP == 20 %}
+        <p><i>{{varP}}</i></p>
+    {% endif %}
+{%endblock content%}

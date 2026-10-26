@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{%block title%}
+    {{block.super}} | Lista
+{%endblock title%}
+{%block content%}
+    <b>lista = {{ lista }}</b> <br/>
+    <b>c = 0</b>
+
+    {% for x in lista %}
+        {% if x >= 7 %}
+        <b>c +=1</b>
+        {% endif %}
+        <p><i> {{x}} </i></p>
+    {% endfor %}
+
+    {% if c >= 10 %}
+        <p style="color: green;"><i> {{c}} </i></p>
+    {% endif %}
+    {% if c < 10 %}
+        <p style="color: red;"><i> {{c}} </i></p>
+    {% endif %}
+
+{%endblock content%}

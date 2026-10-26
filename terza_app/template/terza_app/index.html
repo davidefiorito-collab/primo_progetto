@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+
+{%block title}  | Index {%endblock title%}
+
+{%block content%}
+    <h1>Index</h1>
+    <ol>
+        <li><a href="{% url 'terza_app:prodotto'%}">prodotto</a></li>
+        <li><a href="{% url 'terza_app:conteggio'%}">conteggio</a></li>
+        <li><a href="{% url 'terza_app:temperature'%}">temperature</a></li>
+    </ol>
+{%endblock content%}
