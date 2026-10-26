@@ -5,9 +5,11 @@ def index(request):
     return render(request,"terza_app/index.html")
 
 def view_a(request):
-    'var1' : randomRandint(1,11),
-    'var2' : randomRandint(1,11),
-    return render(request, "terza_app/view_a.html", var1,var2)
+    dic = {
+        var1 : randomRandint(1,11)
+        var2 : randomRandint(1,11)
+    }
+    return render(request, "terza_app/view_a.html", dic)
 
 def view_b(request):
     lista=[]
