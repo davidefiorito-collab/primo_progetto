@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'prima_app',
     'seconda_app',
+    'terza_app',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'prima_app/templates/prima_app'),
             os.path.join(BASE_DIR, 'seconda_app/templates/seconda_app'),
+            os.path.join(BASE_DIR, 'terza_app/templates/terza_app'),
             os.path.join(BASE_DIR, 'primo_progetto/templates/')
         ],
         'APP_DIRS': True,
