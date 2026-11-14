@@ -59,3 +59,27 @@ def articoloDetailView(request, pk):
         'articolo': articolo
     }
     return render(request, 'articolo_detail.html', context)
+
+def lista_articoli(request, pk):
+    # Interroga il database filtrando solo gli articoli che appartengono al giornalista con id uguale a pk
+    articoli = Articolo.objects.filter(giornalista_id=pk)
+    
+    # Crea il dizionario context per passare la lista degli articoli filtrati al template
+    context = {
+        'articoli': articoli,
+    }
+    
+    # Renderizza e restituisce la pagina HTML passando la richiesta e i dati nel context
+    return render(request, 'lista_articoli.html', context)
+
+def lista__tutti_articoli(request, pk=None):
+    # Interroga il database filtrando solo gli articoli che appartengono al giornalista con id uguale a pk
+    articoli = Articolo.objects.all()
+    
+    # Crea il dizionario context per passare la lista degli articoli filtrati al template
+    context = {
+        'articoli': articoli,
+    }
+    
+    # Renderizza e restituisce la pagina HTML passando la richiesta e i dati nel context
+    return render(request, 'lista_articoli.html', context)
