@@ -1,5 +1,4 @@
 import os
-
 """
 Django settings for primo_progetto project.
 
@@ -22,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0=h@^2oqys1zpfma2cy553ptvl)*amdspfdulls_fzjs(57+om'
+SECRET_KEY = 'django-insecure-^6v3k=l-rs_w^8$4-5gz_9yo+xbr)s(%)@&(7-2s^lr!)j6c^t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -58,11 +57,7 @@ ROOT_URLCONF = 'primo_progetto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'prima_app/templates/prima_app'),
-            os.path.join(BASE_DIR, 'seconda_app/templates/seconda_app'),
-            os.path.join(BASE_DIR, 'primo_progetto/templates/')
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

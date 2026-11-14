@@ -29,7 +29,7 @@
     {% for x in list2 %}
         {% if forloop.last %}
             <i>The last item</i> - {{ x }}
-        {% endif %}
+        {% endif%}
     {% endfor %}
     <br/>
     <br/>
@@ -37,12 +37,11 @@
     {% for x in list2 reversed %}
         <i>Item</i> - {{ x }}<br/>
     {% endfor %}
-
+    <br>
     <h2>Contenuto del dizionario:</h2>
     <ul>
         {% for key, value in my_dict.items %}
             <li>{{ key }}: {{ value }}</li>
         {% endfor %}
     </ul>
-    <!-- Itera e stampa il contenuto di un dizionario -->
 {%endblock content%}
