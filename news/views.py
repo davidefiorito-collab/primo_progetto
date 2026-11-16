@@ -42,6 +42,8 @@ def home(request):
     return HttpResponse("<h1>"+reponse+"</h1>")
     #printa la lista
 """
+def index(request):
+    return render(request, 'news/index.html')
 
 def home(request):
     articoli= Articolo.objects.all()
@@ -61,7 +63,7 @@ def articoloDetailView(request, pk):
     }
     return render(request, 'articolo_detail.html', context)
 
-def lista_articoli(request, pk):
+def listaArticoli(request, pk):
     # Interroga il database filtrando solo gli articoli che appartengono al giornalista con id uguale a pk
     articoli = Articolo.objects.filter(giornalista_id=pk)
     
@@ -73,7 +75,7 @@ def lista_articoli(request, pk):
     # Renderizza e restituisce la pagina HTML passando la richiesta e i dati nel context
     return render(request, 'lista_articoli.html', context)
 
-def lista_tutti_articoli(request, pk=None):
+def listaTuttiArticoli(request, pk=None):
     # Interroga il database filtrando solo gli articoli che appartengono al giornalista con id uguale a pk
     articoli = Articolo.objects.all()
     
@@ -85,7 +87,7 @@ def lista_tutti_articoli(request, pk=None):
     # Renderizza e restituisce la pagina HTML passando la richiesta e i dati nel context
     return render(request, 'lista_articoli.html', context)
 
-def query_base(request):
+def queryBase(request):
         # 1. Tutti gli articoli scritti da giornalisti di un certo cognome
     articoli_cognome = Articolo.objects.filter(giornalista__cognome='Rossi')
     
@@ -132,7 +134,34 @@ def query_base(request):
     
     # 15. Tutti gli articoli che contengono una certa parola nel titolo
     articoli_parola = Articolo.objects.filter(titolo__icontains='importante')
+
+    # 16. Articoli pubblicati in un certo mese di un anno specifico
+    articoli_mese_anno = Articolo.objects.filter(data__month=1, data__year=2023)
+
+    # 17. Giornalisti con almeno un articolo con più di 100 visualizzazioni
+    giornalisti_con_articolo_popolari = Giornalista.objects.filter(articoli__visualizzazioni__gte=100).distinct()
+
+    # UTILIZZO DI PIù CONDIZIONI DI SELEZIONE
+    data = datetime.date(1990, 1, 1)
+    visualizzazioni = 50
+    # Come and si usa la virgola
+    # 18. scrivi quali art vengono selezionati
+    articoli_con_and = Articolo.objects.filter(giornalista__anno_di_nascita__gt=data, visualizzazioni__gte=visualizzazioni)
+
+    # Per l'or si usa Q
+    from django.db.models import Q
+    # 19. scrivi quali art vengono selezionati
+    articoli_con_or = Articolo.objects.filter(Q(giornalista__anno_di_nascita__gt=data) | Q(visualizzazioni__gte=visualizzazioni))
+
+    # Per il not si usa ~Q
+    # 20. scrivi quali art vengono selezionati
+    articoli_con_not = Articolo.objects.filter(~Q(giornalista__anno_di_nascita__lt=data))
     
+    # Oppure con il metodo exclude
+    # 21 scrivi quali art vengono selezionati (metodo exclude)
+    articoli_con_not = Articolo.objects.exclude(giornalista__anno_di_nascita__lt=data)
+
+
     # Creare il dizionario context
     context = {
         'articoli_cognome': articoli_cognome,
@@ -152,6 +181,22 @@ def query_base(request):
         'ultimi': ultimi,
         'articoli_minime_visualizzazioni': articoli_minime_visualizzazioni,
         'articoli_parola': articoli_parola,
+        'articoli_mese_anno' : articoli_mese_anno,
+        'giornalisti_con_articolo_popolari' : giornalisti_con_articolo_popolari,
+        'articoli_con_and' : articoli_con_and,
+        'articoli_con_or' : articoli_con_or,
+        'articoli_con_not' : articoli_con_not,
+
     }
     
     return render(request, 'query_base.html', context)
+
+def giornalistaDetailView(request, pk):
+    giornalista = get_object_or_404(Giornalista, pk=pk)
+    articoli_giornalista = Articolo.objects.filter(giornalista=giornalista)
+
+    context = {
+        'giornalista' : giornalista,
+        'articoli_giornalista' : articoli_giornalista
+    }
+    return render(request, 'giornalista_detail.html', context)
